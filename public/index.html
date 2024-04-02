@@ -8,17 +8,155 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS for Login Popup */
+.login-popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.login-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 40px; /* Increased padding */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Login and Signup Form Styles */
+form {
+    margin-bottom: 1rem;
+}
+
+form h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    background-color: #ff9800; /* Orange button background */
+    color: #fff;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #f57c00; /* Darker orange on hover */
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #000;
+    padding: 0;
+}
+
+.close-btn:hover {
+    color: #999;
+}
+
+/* Navbar Styles */
+.navbar {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-scroll {
+    background-color: #ffffff; /* Orange background color when scrolled */
+    color: black;
+}
+
+    </style>
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
-    <header class="fixed top-8 left-8 w-full z-50 flex flex-row">
+    <header class="navbar fixed pt-8 pl-8 w-full z-50 flex flex-row">
         <img class="w-72" src="images/img2.png ">
         <div style="font-size: 1.5vw;" class="flex flex-row mr-9 text-white gap-14 ml-96">
             <button class="ml-80">Home</button>
             <button>My Books</button>
             <button>Best Sellers</button>
         </div>
-        <button class="font-bold rounded-full bg-white w-40 text-xl ml-11">Log in</button>
+        <button class="font-bold rounded-full bg-white w-40 text-xl ml-11" onclick="toggleLoginPopup()">Log in</button>
     </header>
+
+    <!-- Login Popup Container -->
+    <div class="login-popup-container" id="loginPopupContainer">
+        <div class="login-popup">
+            <!-- Login Form -->
+            <form class="mb-4">
+                <h2 class="text-xl font-semibold mb-2">Log in</h2>
+                <label class="block text-sm mb-2" for="loginUsername">Username</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="text" id="loginUsername" name="loginUsername" required>
+                <label class="block text-sm mb-2" for="loginPassword">Password</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="password" id="loginPassword" name="loginPassword" required>
+                <button class="bg-orange-500 text-white py-2 px-4 rounded-sm hover:bg-blue-600" type="submit">Log in</button>
+            </form>
+
+            <!-- Signup Form (Initially Hidden) -->
+            <form class="hidden" id="signupForm">
+                <h2 class="text-xl font-semibold mb-2">Sign up</h2>
+                <label class="block text-sm mb-2" for="signupName">Name</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="text" id="signupName" name="signupName" required>
+                <label class="block text-sm mb-2" for="signupSchool">School</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="text" id="signupSchool" name="signupSchool" required>
+                <label class="block text-sm mb-2" for="signupLocation">Location</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="text" id="signupLocation" name="signupLocation" required>
+                <label class="block text-sm mb-2" for="signupEmail">Email</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="email" id="signupEmail" name="signupEmail" required>
+                <label class="block text-sm mb-2" for="signupPassword">Password</label>
+                <input class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" type="password" id="signupPassword" name="signupPassword" required>
+                <label class="block text-sm mb-2" for="signupWhyLoveBooks">Why do you love books? (Limit 200 words)</label>
+                <textarea class="border border-gray-300 rounded-sm px-3 py-2 w-full mb-3" id="signupWhyLoveBooks" name="signupWhyLoveBooks" rows="5" maxlength="200" required></textarea>
+                <button class="bg-green-500 text-white py-2 px-4 rounded-sm hover:bg-green-600" type="submit">Sign up</button>
+            </form>
+
+            <!-- Signup Button -->
+            <button class="text-sm text-gray-500 underline mt-2" onclick="toggleSignupForm()">Sign up instead</button>
+
+            <!-- Close Button -->
+            <button class="absolute top-2 right-2 bg-gray-300 text-gray-600 rounded-full h-8 w-8 flex justify-center items-center" onclick="toggleLoginPopup()">X</button>
+        </div>
+    </div>
+
     <div class="h-screen w-screen flex flex-row">
         <div class="w-1/2 flex flex-col justify-center ml-9">
             <div style="font-size: 3.5vw;" class="font-bold">Delve into the rich tapestry <br>of your author's literary masterpieces</div>
@@ -29,6 +167,7 @@
             <img src="images/img1.png" class="absolute bottom-0 left-1/3 z-20 h-5/6">
         </div>
     </div>
+
     <div class="h-screen w-screen flex flex-row">
         <div style="font-size: 1.2vw;" class=" flex flex-col gap-5 h-screen w-1/5 bg-gray-200 rounded-r-3xl">
             <div class="font-bold ml-8 mt-10" style="font-size: 1.5vw;">Categories</div>
@@ -47,68 +186,60 @@
                         <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
                         <div class="text-2xl">By Anthony doerr</div>
                         <div>description</div>
-                    </div>
+                    </div> 
                 </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-16 mt-24 flex flex-row">
-                    <img class="h-full w-60"  src="images/img4.png">
-                    <div>
-                        <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
-                        <div class="text-2xl">By Anthony doerr</div>
-                        <div>description</div>
-                    </div>
-                </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-24 mt-10 flex flex-row">
-                    <img class="h-full w-60"  src="images/img4.png">
-                    <div>
-                        <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
-                        <div class="text-2xl">By Anthony doerr</div>
-                        <div>description</div>
-                    </div>
-                </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-16 mt-10 flex flex-row">
-                    <img class="h-full w-60"  src="images/img4.png">
-                    <div>
-                        <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
-                        <div class="text-2xl">By Anthony doerr</div>
-                        <div>description</div>
-                    </div>
-                </div>
-            </div>
-            <div style="position:sticky; top:0;" class="h-screen w-full  bg-gray-100 rounded-3xl grid grid-cols-2 grid-rows-2 gap-2">
+                <!-- Other book cards -->
                 <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-24 mt-24 flex flex-row ">
                     <img class="h-full w-60"  src="images/img4.png">
                     <div>
                         <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
                         <div class="text-2xl">By Anthony doerr</div>
                         <div>description</div>
-                    </div>
+                    </div> 
                 </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-16 mt-24 flex flex-row">
+                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-24 mt-24 flex flex-row ">
                     <img class="h-full w-60"  src="images/img4.png">
                     <div>
                         <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
                         <div class="text-2xl">By Anthony doerr</div>
                         <div>description</div>
-                    </div>
+                    </div> 
                 </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-24 mt-10 flex flex-row">
+                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-24 mt-24 flex flex-row ">
                     <img class="h-full w-60"  src="images/img4.png">
                     <div>
                         <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
                         <div class="text-2xl">By Anthony doerr</div>
                         <div>description</div>
-                    </div>
-                </div>
-                <div class="bg-white w-4/5 h-4/5 shadow-2xl ml-16 mt-10 flex flex-row">
-                    <img class="h-full w-60"  src="images/img4.png">
-                    <div>
-                        <div class="font-bold text-3xl mt-9">All the light we cannot see</div>
-                        <div class="text-2xl">By Anthony doerr</div>
-                        <div>description</div>
-                    </div>
+                    </div> 
                 </div>
             </div>
+            <!-- Other book categories -->
         </div>   
     </div>
+
+    <!-- JavaScript to toggle login popup and signup form -->
+    <script>
+        function toggleLoginPopup() {
+            const loginPopupContainer = document.getElementById('loginPopupContainer');
+            loginPopupContainer.style.display = loginPopupContainer.style.display === 'none' ? 'block' : 'none';
+        }
+    
+        function toggleSignupForm() {
+            const loginForm = document.querySelector('#loginPopupContainer form:nth-of-type(1)');
+            const signupForm = document.getElementById('signupForm');
+            loginForm.classList.add('hidden');
+            signupForm.classList.toggle('hidden');
+        }
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+    </script>
 </body>
 </html>

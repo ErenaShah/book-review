@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Profile</title>
+    <style>
+       body {
+            background-image: url('images/img13.png');
+            background-repeat: no-repeat;
+            background-position: top center; 
+            background-size: 100% auto; /* Set width to 100% and height to auto to maintain aspect ratio */
+            width: 100%;
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            position: relative; /* Added to set a positioning context for circles */
+        }
+        .profile-picture {
+            width: 600px; /* Fixed width */
+            height: 600px; /* Fixed height */
+            border: 14px solid white; /* Set border properties */
+            border-radius: 50%; /* Ensure the border is rounded */
+            overflow: hidden;
+            animation: pulse 2s infinite alternate; /* Animation for profile picture */
+        }
+        .profile-picture img {
+            width: 100%; /* Ensure the image takes up the full space of the container */
+            height: 100%; /* Ensure the image takes up the full space of the container */
+            object-fit: cover; /* Maintain aspect ratio */
+            display: block;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+        .profile-info {
+            opacity: 0;
+            animation: slideIn 1s forwards;
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .circle {
+            width: 100px; /* Increase circle size */
+            height: 100px; /* Increase circle size */
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            animation: moveCircle 5s infinite alternate;
+        }
+        @keyframes moveCircle {
+            0% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(50%);
+            }
+        }
+        .para{
+            width: 700px;
+            margin-left: 50px;
+            border-radius: 2px;
+            border: 2px solid black;
+            padding:40px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body style="font-family: 'Poppins', sans-serif;">
+    <div class="m-12 flex flex-row">
+        <div class="profile-picture">
+            <img src="images/img14.jpg">
+        </div>
+        <div class="flex flex-row ml-20 mt-96 profile-info">
+            <div class="flex flex-col gap-20">
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Name</div>
+                    <div class="text-4xl">Erena Shah</div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">School</div>
+                    <div class="text-4xl">St.Kabir School</div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Location</div>
+                    <div class="text-4xl">Ahmedabad</div>
+                </div>
+            </div>
+            <div class="ml-16 flex flex-col gap-20">
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Email</div>
+                    <div class="text-4xl">shaherena@gmai.com</div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Email</div>
+                    <div class="text-4xl">Olive greens,Ahmedabad,<br>380014</div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Email</div>
+                    <div class="text-4xl">Olive greens,Ahmedabad,<br>380014</div>
+                </div>
+            </div>
+            <div class="para">
+                <div class="text-4xl font-medium" style="color: rgb(8, 145, 178);">Love for books</div>
+                <div class="text-3xl mt-9">As an ardent reader, books are my constant companions, guiding me through diverse worlds and deepening my understanding of life. Each book I open unlocks a new realm of imagination and insight, offering solace, companionship, and boundless inspiration. From the pages of fiction to the depths of non-fiction, my love for books knows no bounds. They are not just stories; they are the essence of my being, shaping my thoughts, nurturing my soul, and fueling my passion for exploration and growth.</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
